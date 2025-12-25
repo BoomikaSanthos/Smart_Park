@@ -1,0 +1,126 @@
+.ps-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f5f5;
+}
+
+.ps-card {
+  width: 360px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px 20px 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ps-title {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+}
+
+.ps-subtitle {
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
+  color: #666;
+}
+
+.ps-input {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.ps-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ps-btn-primary {
+  background: #f38a96;
+  color: #fff;
+}
+
+.ps-btn-secondary {
+  background: #f2f2f2;
+  color: #333;
+}
+
+.ps-link-btn {
+  background: transparent;
+  border: none;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ps-role-section {
+  margin-top: 18px;
+}
+
+.ps-role-section h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.ps-role-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.ps-role-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ps-role-btn.active {
+  border-color: #f38a96;
+  background: #ffecef;
+}
+
+.ps-message {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.ps-bottom-nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.ps-nav-item {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  color: #444;
+  cursor: pointer;
+}
+
+.ps-nav-item.active {
+  font-weight: 600;
+}
