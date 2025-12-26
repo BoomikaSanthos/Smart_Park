@@ -2,8 +2,11 @@
   "name": "smart-parking",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://BoomikaSanthos.github.io/Smart_Park",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,7 @@
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "nodemon": "^3.1.11"
   }
 }
