@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Login({ setPage }) {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -19,7 +20,7 @@ function Login({ setPage }) {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/auth/validate', {
+      await axios.post('${API_URL}/api/auth/validate', {
         email: formData.email,
         password: formData.password,
         role: selectedRole // ✅ REQUIRED
@@ -67,7 +68,7 @@ function Login({ setPage }) {
   const resendOtp = async () => {
     setOtp('');
     try {
-      await axios.post('http://localhost:5000/api/auth/login', {
+      await axios.post('${API_URL}/api/auth/login', {
         email: formData.email,
         password: formData.password,
         role: selectedRole,
@@ -94,7 +95,7 @@ function Login({ setPage }) {
 
       if (otpRequired && otp) loginData.otp = otp;
 
-      const resData = await axios.post('http://localhost:5000/api/auth/login', loginData);
+      const resData = await axios.post('${API_URL}/api/auth/login', loginData);
 
       if (resData.data.otpRequired) {
         setOtpRequired(true);
