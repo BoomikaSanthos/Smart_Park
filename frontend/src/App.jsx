@@ -1,46 +1,63 @@
-//import SlotList3 from "./pages/SlotList";
-import Booking from "./pages/Booking";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MapPage from './pages/MapPage';
+import Analytics from './pages/Analytics';
+import Slots from './pages/Slots';
+import Booking from './pages/Booking';
+import History from './pages/History';
+import Profile from './pages/Profile';
+import Payment from './pages/Payment';
+import AdminPage from './pages/AdminPage';
+// REMOVED: import Navbar from './components/Navbar';  ❌ No global navbar
+import './App.css';
+import "leaflet/dist/leaflet.css";
 
 function App() {
-  // const slots = [
-  //   "9:00 - 10:00 AM",
-  //   "10:00 - 11:00 AM",
-  //   "11:00 - 12:00 PM",
-  //   "1:00 - 2:00 PM",
-  //   "2:00 - 3:00 PM",
-  //   "3:00 - 4:00 PM",
-  // ];
+  const [page, setPage] = useState('home');
+  const [pageData, setPageData] = useState({});
 
-  // const slots = [
-  //   { id: 1, status: "available" },
-  //   { id: 2, status: "booked" },
-  //   { id: 3, status: "available" },
-  // ];
+  const commonProps = {
+    setPage: (newPage, data = {}) => {
+      setPage(newPage);
+      setPageData(data);
+    },
+    pageData,
+    currentPage: page
+  };
 
-  const [slots, setSlots] = useState([
-    { id: 1, status: "available" },
-    { id: 2, status: "booked" },
-    { id: 3, status: "available" },
-    { id: 4, status: "available" },
-    { id: 5, status: "booked" },
-  ]);
-
-  const bookSlot = (slotId) => {
-    const updatedSlots = slots.map((slot) =>
-      slot.id === slotId ? { ...slot, status: "booked" } : slot
-    );
-    setSlots(updatedSlots);
+  const renderPage = () => {
+    switch(page) {
+      case 'login': return <Login {...commonProps} />;
+      case 'register': return <Register {...commonProps} />;
+      case 'map': return <MapPage {...commonProps} />;
+      case 'slots':
+        const slotsLocationId = pageData.locationId || pageData;
+        return <Slots locationId={slotsLocationId} {...commonProps} />;
+      case 'booking':
+        const bookingData = pageData.selectedSlot || pageData || {};
+        return (
+          <Booking
+            selectedSlot={bookingData}
+            locationId={pageData.locationId}
+            {...commonProps}
+          />
+        );
+      case 'history': return <History {...commonProps} />;
+      case 'profile': return <Profile {...commonProps} />;
+      case 'payment': return <Payment {...commonProps} />;
+      case 'admin': return <AdminPage setPage={setPage} />;
+      case 'analytics': return <Analytics {...commonProps} />; // ✅ Added Analytics
+      default: return <Home {...commonProps} />;
+    }
   };
 
   return (
-    <div className="container">
-      <h1>Available Slots</h1>
-
-      {/* <SlotList3 slots={slots} /> */}
-      {/* <Booking slots={slots} /> */}
-      <Booking slots={slots} bookSlot={bookSlot} />
-    </div>
+    <>
+      {/* ✅ REMOVED: Global Navbar - No more white bar! */}
+      {renderPage()}
+    </>
   );
 }
 

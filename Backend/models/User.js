@@ -7,6 +7,9 @@ const UserSchema = new mongoose.Schema({
   vehicleNumber: { type: String, required: true },
   vehicleType: { type: String, required: true },
   phone: { type: String, required: true },
+  otp: { type: String, default: null },
+otpExpires: { type: Date, default: null },
+
   // admin or user
   role: {
     type: String,
@@ -15,4 +18,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema); 

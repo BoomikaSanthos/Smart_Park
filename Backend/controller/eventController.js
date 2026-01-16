@@ -1,70 +1,22 @@
+const express = require("express");
+const router = express.Router();
+const auth = require("../middleware/authMiddleware");
+const admin = require("../middleware/admin");
+const eventController = require("../controllers/eventController");
 
-exports.getAdvancedEvents = async (req, res) => {
+// GET events
+router.get("/", eventController.getAdvancedEvents);
 
-  try {
+// CREATE event (admin only)
+router.post("/", auth, admin, eventController.createEvent);
 
-    let { page, limit, search, sort } = req.query;
- 
-    page = parseInt(page) || 1;
+// UPDATE event
+router.put("/:id", auth, admin, eventController.updateEvent);
 
-    limit = parseInt(limit) || 5;
- 
-    const skip = (page - 1) * limit;
- 
-    let query = {};
- 
-    // Search by event name
+// DELETE event
+router.delete("/:id", auth, admin, eventController.deleteEvent);
 
-    if (search) {
+// GET single event
+router.get("/:id", eventController.getSingleEvent);
 
-      query.eventName = { $regex: search, $options: "i" };
-
-    }
- 
-    // Sorting logic
-
-    let sortOption = {};
-
-    if (sort === "asc") {
-
-      sortOption.createdAt = 1; // Oldest first
-
-    } else {
-
-      sortOption.createdAt = -1; // Newest first
-
-    }
- 
-    // Fetch events
-
-    const events = await Event.find(query)
-
-      .sort(sortOption)
-
-      .skip(skip)
-
-      .limit(limit);
- 
-    const total = await Event.countDocuments(query);
- 
-    res.json({
-
-      success: true,
-
-      total,
-
-      page,
-
-      pages: Math.ceil(total / limit),
-
-      events,
-
-    });
- 
-  } catch (error) {
-
-    res.status(500).json({ message: error.message });
-
-  }
-
-};
+module.exports = router;

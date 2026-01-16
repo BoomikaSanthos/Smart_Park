@@ -39,4 +39,4 @@ router.get("/all", authenticate, async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = router; 

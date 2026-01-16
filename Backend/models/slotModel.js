@@ -2,19 +2,16 @@ const mongoose = require("mongoose");
 
 const slotSchema = new mongoose.Schema({
   slotNumber: { type: String, required: true, unique: true },
+  state: String,
+  location: String,
+  slotStatus: String,
+  vehicleType: String,
   isAvailable: { type: Boolean, default: true },
-  location: {
-    x: Number,
-    y: Number,
+  alerts: {
+    systemError: { type: Boolean, default: false },
+    maintenance: { type: Boolean, default: false },
+    infrastructure: { type: Boolean, default: false },
   },
-  // add this
-  latitude: { type: Number },
-  longitude: { type: Number },
-
-  imageUrl: { type: String },
-    // NEW: state code for filtering (e.g., "TN", "KA")
-  state: { type: String },
-
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Slot", slotSchema);

@@ -7,4 +7,4 @@ const companySchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Company", companySchema);
+module.exports = mongoose.model("Company", companySchema)
