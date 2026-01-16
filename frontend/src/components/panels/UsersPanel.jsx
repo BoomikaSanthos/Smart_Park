@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 // UsersPanel.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -30,7 +31,7 @@ function UsersPanel() {
           return;
         }
 
-        const res = await axios.get("http://localhost:5000/api/admin/alldata", {
+        const res = await axios.get("${API_URL}/api/admin/alldata", {
           headers: { "x-auth-token": token },
         });
 
