@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Register({ setPage }) {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ function Register({ setPage }) {
       const payload = { ...formData };
       if (otpRequired && otp) payload.otp = otp;
 
-      const res = await axios.post('http://localhost:5000/api/auth/register', payload);
+      const res = await axios.post('${API_URL}/api/auth/register', payload);
 
       if (res.data.otpRequired) {
         setOtpRequired(true);
