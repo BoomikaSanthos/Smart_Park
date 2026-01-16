@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Slots({ setPage, locationId, pageData }) {
   const [slots, setSlots] = useState([]);
@@ -13,7 +14,7 @@ function Slots({ setPage, locationId, pageData }) {
 
     const fetchSlots = async () => {
       try {
-        let url = 'http://localhost:5000/api/slots/with-status';
+        let url = '${API_URL}/api/slots/with-status';
         if (locationId?.state) url += `?state=${locationId.state}`;
         if (locationId?.location) url += `${url.includes('?') ? '&' : '?'}location=${locationId.location}`;
 
