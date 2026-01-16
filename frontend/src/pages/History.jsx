@@ -1,6 +1,7 @@
 // src/pages/History.jsx - Full Payment Status + Smart Controls
 import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from '../components/Navbar';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const History = ({ setPage }) => {
   const [bookings, setBookings] = useState([]);
@@ -13,7 +14,7 @@ const History = ({ setPage }) => {
 
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5000/api/bookings/history', {
+      const res = await fetch('${API_URL}/api/bookings/history', {
         headers: { 'x-auth-token': token }
       });
       const data = await res.json();
@@ -32,7 +33,7 @@ const History = ({ setPage }) => {
   // 🚀 CHECK-IN API
   const handleCheckIn = async (bookingId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${bookingId}/checkin`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}/checkin`, {
         method: 'POST',
         headers: {
           'x-auth-token': token,
@@ -53,7 +54,7 @@ const History = ({ setPage }) => {
   // 🚀 CHECK-OUT API
   const handleCheckOut = async (bookingId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${bookingId}/checkout`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}/checkout`, {
         method: 'POST',
         headers: {
           'x-auth-token': token,
