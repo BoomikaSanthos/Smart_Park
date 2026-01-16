@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import {
@@ -5,7 +6,7 @@ import {
   PieChart, Pie, Cell
 } from "recharts";
 
-const API_BASE = "http://localhost:5000/api/analytics";
+const API_BASE = "${API_URL}/api/analytics";
 
 const Analytics = () => {
   const [filters, setFilters] = useState({
