@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from '../components/Navbar';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Booking({ setPage, selectedSlot, locationId }) {
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,7 +15,7 @@ function Booking({ setPage, selectedSlot, locationId }) {
   const loadSlots = useCallback(async () => {
     if (!token) return (setError('Please login first'), setPage('login'));
     try {
-      let url = 'http://localhost:5000/api/slots/with-status';
+      let url = '${API_URL}/api/slots/with-status';
       if (locationId?.state) url += `?state=${locationId.state}`;
       if (locationId?.location) url += `${url.includes('?') ? '&' : '?'}location=${locationId.location}`;
       const res = await fetch(url, { headers: { 'x-auth-token': token } });
@@ -67,7 +69,7 @@ function Booking({ setPage, selectedSlot, locationId }) {
     e.preventDefault();
     setLoading(true); setError('');
     try {
-      const res = await fetch('http://localhost:5000/api/bookings/preview-and-book', {
+      const res = await fetch('${API_URL}/api/bookings/preview-and-book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-auth-token': token },
         body: JSON.stringify(form)
