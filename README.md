@@ -1,329 +1,412 @@
 SmartPark Pro – Smart Parking Management System
 SmartPark Pro is a MERN‑stack smart parking system that lets users register, log in, view parking slot availability on a map and grid, and book slots for a specific time range with validation. Admins can manage slots and companies via protected APIs.
 ​
+🚗 Smart Parking Management System
 
-Features
-User authentication & roles
+A full-stack Smart Parking Management System that allows users to locate parking slots, book parking in real time, make secure payments, and track booking history — all through a modern, responsive web interface.
 
-Register with personal + vehicle details (name, email, password, vehicle number, type, phone).
+This project includes:
 
-Login with JWT‑based authentication stored in the frontend (localStorage).
+A React-based frontend
 
-Roles: user (booking) and admin (management).
-​
+A Node.js + Express backend
 
-Parking slots
+MongoDB for data storage
 
-Slots stored in MongoDB with fields like slotNumber, isAvailable, state, location, and optional imageUrl.
+Map integration for parking locations
 
-Seed script to populate initial slots.
-​
+Authentication, booking, and payment flow
 
-Map visualization
+📌 Project Features
+👤 User Features
+Key Features
 
-React page showing a Google Map with slot markers (in dev mode, can show “For development purposes only”).
+### 🔐 Authentication & Authorization
 
-Slot grid below the map with color‑coded availability (green = available, red = booked).
-​
+* JWT-based authentication
+* Role-based access control (User / Admin)
+* Secure protected routes using middleware
 
-Booking flow
+### 🅿️ Slot Management
 
-/slots page: select a slot and see basic details.
+* Add, update, remove parking slots
+* State & location-based slot filtering
+* Real-time availability tracking
+* Infrastructure / maintenance alerts
 
-/book?slotId=... page: enter vehicle number, start time, and end time, then confirm booking.
+### 📅 Booking System
 
-Frontend checks that endTime is after startTime before sending the request.
-​
+* Preview & book parking slots
+* 15-minute slab-based billing (₹5 per slab)
+* Check-in & check-out flow
+* Active booking detection
+* Booking history with payment sync
 
-Admin tools (backend APIs)
+### 💳 Payment Engine (Rule-Based)
 
-Create slots (/api/admin/create-slot).
+* No-show penalty handling
+* Late payment penalties (after 24 hours)
+* Automatic slab calculation based on actual usage
+* Payment preview before checkout
+* Fully synced Booking ↔ Payment records
 
-List users, manage companies, and basic admin dashboard routes.
-​
+### 📊 User Dashboard APIs
 
-Tech Stack
+* Profile data
+* Booking & payment history
+* Aggregated stats (total spent, average duration, active sessions)
+
+### 🧑‍💼 Admin & Business Features
+
+* Event management (CRUD + pagination + search)
+* Company management
+* Analytics-ready data models
+
+### 🌱 Database Seeders
+
+* Slot seeder (520+ slots across Indian states)
+* Full demo data seeder:
+
+  * Users (VIP, flakers, regular)
+  * Past, current, and future bookings
+  * Payments perfectly synced with bookings
+
+---
+
+## 🏗️ Tech Stack
+
+* *Node.js* (>=18)
+* *Express.js*
+* *MongoDB + Mongoose*
+* *JWT Authentication*
+* *Nodemailer* (email support)
+* *bcryptjs* (password hashing)
+User Registration & Login (JWT-based authentication)
+
+View parking locations on an interactive map
+
+Select state → city → parking slot
+
+Real-time slot booking
+
+Secure payment simulation
+
+Booking history with status (active, completed, paid, unpaid)
+
+Profile dashboard
+
+🅿️ Parking Management
+
+Slot availability tracking
+
+Booking duration calculation
+
+Check-in / Check-out system
+
+💳 Payment System
+
+Payment breakdown view
+
+Multiple payment method UI
+
+Payment status tracking
+
+Payment history
+
+🗺️ Map Integration
+
+Google Maps integration
+
+Location-based parking visualization
+
+🧱 Tech Stack
 Frontend
 
-React (Create React App)
+React.js
 
-React Router DOM
+CSS (Glassmorphism & modern UI)
 
-Custom CSS layouts (LandingPage, Auth, SlotsPage)
-​
+React Router
+
+Axios
+
+Leaflet / React-Leaflet
+
+Responsive design (mobile & desktop)
 
 Backend
 
-Node.js, Express
+Node.js
 
-MongoDB & Mongoose models (User, Slot, Company, Booking)
+Express.js
 
-JWT authentication middleware, role‑based access (admin/user)
-​
+MongoDB (Mongoose)
 
-Other
+JWT Authentication
 
-Google Maps JavaScript API (development‑mode map).
+Bcrypt (password hashing)
 
-dotenv, cors, bcryptjs, jsonwebtoken, nodemon.
-​
+Nodemailer (email support)
 
-Project Structure (high level)
-text
-smart-parking/
-  Backend/
-    models/
-      User.js
-      slotModel.js
-      Company.js
-      bookingModel.js
-    routes/
-      auth.js
-      admin.js
-      slotRoutes.js
-      company.js
-      user.js
-      bookings.js
-    middleware/
-      authMiddleware.js
-      admin.js
-    seed/
-      slotSeeder.js
-    server.js
-    .env
-  frontend/
-    src/
-      pages/
-        LandingPage.jsx
-        LoginPage.jsx
-        RegisterPage.jsx
-        SlotList.jsx
-        BookingPage.jsx
-        MapPage.jsx (optional)
-      components/
-        ParkingMap.jsx
-        StateGallery.jsx
-        SlotGrid / SlotCard (older components, optional)
-      styles:
-        LandingPage.css
-        AuthPages.css
-        SlotsPage.css
-      App.js
-      index.js
-    public/
-      index.html
-    .env
-This structure may differ slightly if you renamed or removed some older components.
-​
+CORS & dotenv
 
-Backend Setup
-Install dependencies
+Deployment
 
-bash
+Frontend: GitHub Pages
+
+Backend: Localhost / Cloud-ready
+
+Database: MongoDB Atlas / Local MongoDB
+
+📂 Project Structure
+Smart_Park/
+│
+├── Backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── server.js
+│   └── .env
+│
+├── Frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   ├── App.js
+│   │   └── App.css
+│   └── public/
+│
+├── Frontend-static/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── package.json
+└── README.md
+
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/BoomikaSanthos/Smart_Park.git
+cd Smart_Park
+
+2️⃣ Backend Setup
 cd Backend
 npm install
-Environment variables
 
-Create Backend/.env:
+API Base URL
 
-text
-MONGOURI=your_mongodb_connection_string
+
+http://localhost:5000/api
+
+
+---
+
+## 🧭 Major API Endpoints
+
+### Auth
+
+* POST /api/auth/register
+* POST /api/auth/login
+
+### Slots
+
+* POST /api/slots/add
+* PUT /api/slots/manage/:slotNumber
+* GET /api/slots/with-status
+* GET /api/slots/states
+
+### Bookings
+
+* POST /api/bookings/preview-and-book
+* PUT /api/bookings/checkin/:id
+* PUT /api/bookings/checkout/:id
+* GET /api/bookings/my-active
+* GET /api/bookings/history
+
+### Payments
+
+* POST /api/payments/pay/:bookingId
+* GET /api/payments/preview/:bookingId
+
+### Users
+
+* GET /api/user/profile
+* GET /api/user/stats
+* GET /api/user/bookings
+* GET /api/user/profile-dashboard
+
+### Admin / Events
+
+* GET /api/events/events
+* POST /api/events/events
+* PUT /api/events/events/:id
+* DELETE /api/events/events/:id
+
+---
+
+## ⚙️ Environment Variables
+
+Create a .env file in the backend root:
+
+
 PORT=5000
-JWT_SECRET=secret123   # or any strong secret, must match authMiddleware
-In your shared code, secret123 is hardcoded; ideally move it to JWT_SECRET.
-​
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
 
-Run the slot seeder (optional but recommended)
 
-bash
-cd Backend
-node seed/slotSeeder.js
-This inserts sample slots like A1–A4 with isAvailable and state values.
-​
+> ⚠️ *Never commit .env to GitHub*
 
-Start the backend server
+---
 
-bash
-cd Backend
-npm run dev
-The API will listen on http://localhost:5000.
-​
+## 🚀 Getting Started
 
-Frontend Setup
-Install dependencies
+### 1️⃣ Install Dependencies
 
 bash
-cd frontend
 npm install
-Environment variables
 
-Create frontend/.env (for Google Maps dev key):
 
-text
-REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_key   # can show 'development only' in dev
-Run the frontend
+### 2️⃣ Run Slot Seeder
 
 bash
-cd frontend
+npm run seed
+
+
+### 3️⃣ (Optional) Run Full Demo Seeder
+
+bash
+node backend/seed/dataSeeder.js
+
+
+### 4️⃣ Start Server
+
+bash
+npm run dev
+
+
+Server will run at:
+
+
+http://localhost:5000
+
+
+---
+3️⃣ Frontend Setup (React)
+cd Frontend
+npm install
 npm start
-The React app runs on http://localhost:3000.
-​
 
-Core API Endpoints (Backend)
-Base URL: http://localhost:5000/api
 
-Auth
-POST /auth/register
-Body: { name, email, password, vehicleNumber, vehicleType, phone, role }
-Response: { message, ... }
+Frontend will run on:
 
-POST /auth/login
-Body: { email, password }
-Response: { message, token }
-The token is stored in localStorage in the frontend.
-​
+http://localhost:3000
 
-Slots
-GET /slots/all
-Returns all slots; frontend uses this for map and grid.
+4️⃣ Static Frontend (Optional)
 
-POST /admin/create-slot (admin only)
-Body: { slotNumber, isBooked } → creates new slot with isAvailable based on isBooked.
-​
+You can directly open:
 
-Bookings (example)
-POST /bookings (authenticated)
-Headers: x-auth-token: <JWT>
-Body: { slotId, vehicleNumber, startTime, endTime }
-Validations:
+Frontend-static/index.html
 
-All fields required.
+## ⏱️ Timezone Handling
 
-endTime must be strictly after startTime.
+* Server runs in *Asia/Kolkata (IST)*
+* All booking & payment calculations follow IST
 
-No overlapping existing booking for the same slot in that time range.
-Response: { message: "Booking created", booking } or error message.
-​
+Create a .env file:
 
-GET /bookings/my (optional future route)
-Returns bookings for the logged‑in user.
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 
-Frontend Routes & Flow
-Configured in frontend/src/App.js:
-​
 
-/ – Landing page (LandingPage.jsx)
+Start backend server:
 
-Marketing hero with “Get Started” button → /login.
+npm run dev
 
-/login – Login page
 
-On success: store JWT in localStorage and redirect to /slots.
+Backend will run on:
 
-/register – Register page
+http://localhost:5000
 
-On success: show message then redirect to /login.
 
-/slots – Slot availability page (SlotList.jsx)
+Used mainly for testing login API.
 
-Protected: requires token.
+▶️ Usage
 
-Calls GET /api/slots/all.
+Register a new user
 
-Shows:
+Login to access dashboard
 
-Google map with markers (ParkingMap.jsx).
+Select parking state & location
 
-Grid of slots with color coding.
+View parking slots on map
 
-Side panel with selected slot details and a “Go to Booking” button.
+Book a slot
 
-Clicking a slot selects it; clicking “Go to Booking” navigates to:
-/book?slotId=<slot_id>.
+Make payment
 
-/book – Booking page (BookingPage.jsx)
+Track booking & payment history
 
-Query param slotId identifies the selected slot.
+Check-in and check-out
 
-Fetches all slots and finds the one matching slotId to display slot info.
+🔐 Authentication Flow
 
-Booking form:
+Passwords are securely hashed using bcrypt
 
-Vehicle number
+JWT tokens are used for protected routes
 
-Start time (datetime-local)
+Role-based access ready (user/admin)
 
-End time (datetime-local)
+🚀 Deployment
+Frontend (GitHub Pages)
+npm run deploy
 
-Client‑side validation:
 
-All fields required
+Live URL:
 
-endTime > startTime
+https://BoomikaSanthos.github.io/Smart_Park
 
-On submit:
+Backend
 
-Sends POST /api/bookings with JWT in x-auth-token.
+Can be deployed to Render / Railway / AWS / Vercel
 
-On success: shows “Booking confirmed” and redirects back to /slots.
-​
+Just update environment variables
 
-You may also add a /bookings page later for listing past and upcoming bookings.
+🤝 Contributing
 
-How Booking Time Validation Works
-Frontend (BookingPage.jsx)
+Contributions are welcome!
+To contribute:
 
-Converts input strings to Date objects.
+Fork the repository
 
-If isNaN(start) or isNaN(end), shows “Invalid time values.”
+Create a new branch (feature/your-feature)
 
-If start >= end, shows “End time must be after start time.” and does not hit the API.
-​
+Commit changes
 
-Backend (routes/bookings.js)
+Push to your fork
 
-Repeats the same checks for safety.
+Open a Pull Request
 
-Checks for an existing Booking on the same slot where the time ranges overlap.
+🧪 Future Enhancements
 
-Only if no conflict and time is valid, creates the booking document and can update slot.isAvailable.
-​
+Real-time slot updates using WebSockets
 
-This double validation prevents any booking with invalid or conflicting times from being saved.
+Admin dashboard
 
-Development Notes & Limitations
-Google Maps currently shows “For development purposes only” because the project uses a dev key without billing enabled; this is acceptable for learning but not for productionon deployment.
-​
+Real payment gateway (Razorpay / Stripe)
 
-Slot state codes (TN, KA, MH, etc.) are used if you choose to filter slots by state from a “Select Place” gallery component.
-​
+QR-based parking entry
 
-Error handling is basic; consider adding better messages and handling for network failures and token expiry.
+Push notifications
 
-Possible Future Enhancements
-Add /bookings page for users to manage and cancel upcoming bookings.
+📄 License
 
-Add true real‑time updates (e.g., websockets or polling) to reflect when slots become free or booked.
+This project is licensed under the ISC License.
 
-Implement admin UI for creating/editing slots, including coordinates and images.
+👩‍💻 Author
 
-Replace the Google dev map with a fully configured Maps key or a free alternative like Leaflet + OpenStreetMap for deployments withoutwithout billing.
-​
-
-How to Run Everything
-Start MongoDB (Atlas or local).
-
-In Backend/:
-
-Set .env, run seeder, then npm run dev.
-
-In frontend/:
-
-Set .env with Maps key, then npm start.
-
-Visit http://localhost:3000:
-
-Register a user, log in, view slots, select one on /slots, and complete booking on /book.
-​
-
-This README should be a good starting point; tweak wording, add screenshots (like your Parking Slots screen), and update any route names or env variables that differ in your final code.
+Boomika Santhos
+GitHub: BoomikaSanthos
