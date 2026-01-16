@@ -1,4 +1,3 @@
-const API_URL = process.env.REACT_APP_API_URL;
 // UsersPanel.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -11,7 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-
+const API_URL = process.env.REACT_APP_API_URL;
 function UsersPanel() {
   const [users, setUsers] = useState([]);
   const [bookings, setBookings] = useState([]);
