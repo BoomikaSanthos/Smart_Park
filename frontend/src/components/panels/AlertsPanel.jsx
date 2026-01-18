@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+const API_URL = process.env.REACT_APP_API_URL;
 function AlertsPanel() {
   const [slots, setSlots] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -19,7 +19,7 @@ function AlertsPanel() {
   // Fetch slots from backend
   const fetchSlots = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/slots/all");
+      const res = await axios.get(`${API_URL}/api/slots/all`);
       setSlots(res.data.slots);
     } catch (err) {
       console.error(err);
@@ -44,14 +44,14 @@ function AlertsPanel() {
   // Remove alerts for a slot
   const removeAlert = async (slot) => {
     const cleared = { systemError: false, maintenance: false, infrastructure: false };
-    await axios.put(`http://localhost:5000/api/slots/manage/${slot.slotNumber}`, { alerts: cleared });
+    await axios.put(`${API_URL}/api/slots/manage/${slot.slotNumber}`, { alerts: cleared });
     fetchSlots();
   };
 
   // Update slot (alerts / price / status)
   const updateSlot = async () => {
     if (!selectedSlot) return;
-    await axios.put(`http://localhost:5000/api/slots/manage/${selectedSlot.slotNumber}`, {
+    await axios.put(`${API_URL}/api/slots/manage/${selectedSlot.slotNumber}`, {
       alerts: selectedSlot.alerts,
       amount: Number(selectedSlot.amount),
       isAvailable: selectedSlot.isAvailable,
@@ -64,13 +64,13 @@ function AlertsPanel() {
   // Remove slot
   const removeSlot = async (slotNumber) => {
     if (!window.confirm("Remove this slot?")) return;
-    await axios.delete(`http://localhost:5000/api/slots/remove/${slotNumber}`);
+    await axios.delete(`${API_URL}/api/slots/remove/${slotNumber}`);
     fetchSlots();
   };
 
   // Add new slot
   const addSlot = async () => {
-    await axios.post("http://localhost:5000/api/slots/add", newSlot);
+    await axios.post(`${API_URL}/api/slots/add`, newSlot);
     setNewSlot({
       state: "",
       location: "",
