@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+const API_URL = process.env.REACT_APP_API_URL;
 function SlotsGrid() {
   const [slotsData, setSlotsData] = useState({});
   const [loading, setLoading] = useState(true);
 
   const fetchSlots = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/slots/with-status");
+      const res = await axios.get(`${API_URL}/api/slots/with-status`);
       const { slots } = res.data;
 
       // Group slots by state -> location (real name from DB)
