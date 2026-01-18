@@ -36,7 +36,7 @@ const DashboardPanel = ({ token }) => {
   const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/admin/dashboard', {
+      const res = await axios.get('${API_URL}/api/admin/dashboard', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setData(res.data);
