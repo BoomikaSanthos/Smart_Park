@@ -20,7 +20,7 @@ ChartJS.register(
   CategoryScale, LinearScale, BarElement, LineElement,
   PointElement, ArcElement, Title, Tooltip, Legend
 );
-
+const API_URL = process.env.REACT_APP_API_URL;
 const DashboardPanel = ({ token }) => {
   const [data, setData] = useState({
     stats: { totalRevenue: 628000, totalBookings: 2434, totalUsers: 1259, avgRating: 8.5 },
