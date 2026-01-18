@@ -5,7 +5,7 @@ import {
   PieChart, Pie, Cell
 } from "recharts";
 const API_URL = process.env.REACT_APP_API_URL;
-const API_BASE = "${API_URL}/api/analytics";
+const API_BASE = `${API_URL}/api/analytics`;
 
 const Analytics = () => {
   const [filters, setFilters] = useState({
