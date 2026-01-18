@@ -1,7 +1,7 @@
 // src/pages/Profile.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+const API_URL = process.env.REACT_APP_API_URL;
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const Profile = () => {
         setError("");
 
         const token = localStorage.getItem("token"); // JWT stored in localStorage
-        const res = await axios.get("http://localhost:5000/api/user/profile", {
+        const res = await axios.get(`${API_URL}/api/user/profile`, {
           headers: { "x-auth-token": token },
         });
 
