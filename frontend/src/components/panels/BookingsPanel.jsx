@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
-
+const API_URL = process.env.REACT_APP_API_URL;
 const COLORS = ["#22c55e", "#3b82f6", "#facc15", "#ef4444"];
 
 const BookingRow = React.memo(({ b, getSlotName }) => {
@@ -101,7 +101,7 @@ export default function AdminBookingsDashboard() {
 
   const fetchSlots = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/slots", {
+      const res = await axios.get(`${API_URL}/api/admin/slots`, {
         headers: { "x-auth-token": token },
       });
       setSlots(res.data.slots || []);
@@ -113,7 +113,7 @@ export default function AdminBookingsDashboard() {
 
   const fetchBookings = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/bookings", {
+      const res = await axios.get(`${API_URL}/api/admin/bookings`, {
         headers: { "x-auth-token": token },
       });
       const bookingData = res.data.bookings || [];
