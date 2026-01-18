@@ -1,11 +1,10 @@
-const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
   PieChart, Pie, Cell
 } from "recharts";
-
+const API_URL = process.env.REACT_APP_API_URL;
 const API_BASE = "${API_URL}/api/analytics";
 
 const Analytics = () => {
