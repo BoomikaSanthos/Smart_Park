@@ -15,7 +15,7 @@ function Booking({ setPage, selectedSlot, locationId }) {
   const loadSlots = useCallback(async () => {
     if (!token) return (setError('Please login first'), setPage('login'));
     try {
-      let url = '${API_URL}/api/slots/with-status';
+      let url = `${API_URL}/api/slots/with-status`;
       if (locationId?.state) url += `?state=${locationId.state}`;
       if (locationId?.location) url += `${url.includes('?') ? '&' : '?'}location=${locationId.location}`;
       const res = await fetch(url, { headers: { 'x-auth-token': token } });
