@@ -14,7 +14,7 @@ const History = ({ setPage }) => {
 
     try {
       setLoading(true);
-      const res = await fetch('${API_URL}/api/bookings/history', {
+      const res = await fetch(`${API_URL}/api/bookings/history`, {
         headers: { 'x-auth-token': token }
       });
       const data = await res.json();
