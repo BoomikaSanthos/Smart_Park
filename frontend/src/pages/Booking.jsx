@@ -69,7 +69,7 @@ function Booking({ setPage, selectedSlot, locationId }) {
     e.preventDefault();
     setLoading(true); setError('');
     try {
-      const res = await fetch('${API_URL}/api/bookings/preview-and-book', {
+      const res = await fetch(`${API_URL}/api/bookings/preview-and-book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-auth-token': token },
         body: JSON.stringify(form)
