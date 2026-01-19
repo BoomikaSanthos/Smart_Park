@@ -29,7 +29,7 @@ function Register({ setPage }) {
 
   const resendOtp = async () => {
     try {
-      await axios.post('${API_URL}/api/auth/register', {
+      await axios.post(`${API_URL}/api/auth/register`, {
         ...formData,
         resendOtp: true
       });
@@ -48,7 +48,7 @@ function Register({ setPage }) {
       const payload = { ...formData };
       if (otpRequired && otp) payload.otp = otp;
 
-      const res = await axios.post('${API_URL}/api/auth/register', payload);
+      const res = await axios.post(`${API_URL}/api/auth/register`, payload);
 
       if (res.data.otpRequired) {
         setOtpRequired(true);
