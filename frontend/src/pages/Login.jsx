@@ -20,7 +20,7 @@ function Login({ setPage }) {
     }
 
     try {
-      await axios.post('${API_URL}/api/auth/validate', {
+      await axios.post(`${API_URL}/api/auth/validate`, {
         email: formData.email,
         password: formData.password,
         role: selectedRole // ✅ REQUIRED
@@ -68,7 +68,7 @@ function Login({ setPage }) {
   const resendOtp = async () => {
     setOtp('');
     try {
-      await axios.post('${API_URL}/api/auth/login', {
+      await axios.post(`${API_URL}/api/auth/login`, {
         email: formData.email,
         password: formData.password,
         role: selectedRole,
@@ -95,7 +95,7 @@ function Login({ setPage }) {
 
       if (otpRequired && otp) loginData.otp = otp;
 
-      const resData = await axios.post('${API_URL}/api/auth/login', loginData);
+      const resData = await axios.post(`${API_URL}/api/auth/login`, loginData);
 
       if (resData.data.otpRequired) {
         setOtpRequired(true);
