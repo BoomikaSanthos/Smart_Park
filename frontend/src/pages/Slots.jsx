@@ -14,7 +14,7 @@ function Slots({ setPage, locationId, pageData }) {
 
     const fetchSlots = async () => {
       try {
-        let url = '${API_URL}/api/slots/with-status';
+        let url = `${API_URL}/api/slots/with-status`;
         if (locationId?.state) url += `?state=${locationId.state}`;
         if (locationId?.location) url += `${url.includes('?') ? '&' : '?'}location=${locationId.location}`;
 
